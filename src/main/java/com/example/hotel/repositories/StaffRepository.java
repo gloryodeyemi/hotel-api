@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface StaffRepository extends JpaRepository<Staff, Long> {
-//    Optional<Staff> findStaffByStaffId(String staffId);
+    Optional<Staff> findStaffByStaffId(String staffId);
     Boolean existsByEmailAddress(String emailAddress);
 }
