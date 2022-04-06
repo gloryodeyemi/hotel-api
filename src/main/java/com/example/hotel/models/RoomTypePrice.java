@@ -3,7 +3,6 @@ package com.example.hotel.models;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,26 +11,14 @@ import java.sql.Timestamp;
 
 @Entity
 @Getter @Setter
-public class Staff {
+public class RoomTypePrice {
     @Id
     @GeneratedValue
     private Long id;
-
-    private String firstName;
-    private String lastName;
-    private String emailAddress;
-    private String phoneNumber;
-    private String staffId;
-    private String staffPassword;
-
-    @Override
-    public final String toString(){
-        return this.firstName + "-" + this.id;
-    }
+    private RoomType roomType;
+    private Double price;
 
     @CreationTimestamp
     private Timestamp dateCreated;
-
-    @UpdateTimestamp
     private Timestamp dateUpdated;
 }

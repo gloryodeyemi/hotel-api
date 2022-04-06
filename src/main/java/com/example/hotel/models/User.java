@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Getter @Setter
-public class Staff {
+public class User {
     @Id
     @GeneratedValue
     private Long id;
@@ -21,8 +21,9 @@ public class Staff {
     private String lastName;
     private String emailAddress;
     private String phoneNumber;
+    private UserType userType;
     private String staffId;
-    private String staffPassword;
+    private String password;
 
     @Override
     public final String toString(){

@@ -12,26 +12,23 @@ import java.sql.Timestamp;
 
 @Entity
 @Getter @Setter
-public class Staff {
+public class HotelRoom {
     @Id
     @GeneratedValue
     private Long id;
 
-    private String firstName;
-    private String lastName;
-    private String emailAddress;
-    private String phoneNumber;
-    private String staffId;
-    private String staffPassword;
+    private String roomCode;
+    private RoomType roomType;
+    private Double price;
+    private RoomStatus roomStatus;
 
     @Override
     public final String toString(){
-        return this.firstName + "-" + this.id;
+        return this.roomType + "-" + this.id;
     }
 
     @CreationTimestamp
     private Timestamp dateCreated;
-
     @UpdateTimestamp
     private Timestamp dateUpdated;
 }
