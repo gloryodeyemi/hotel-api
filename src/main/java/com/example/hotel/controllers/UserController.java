@@ -2,7 +2,7 @@ package com.example.hotel.controllers;
 
 import com.example.hotel.dtos.UserDto;
 import com.example.hotel.exceptions.ErrorException;
-import com.example.hotel.models.User;
+import com.example.hotel.models.UserAccount;
 import com.example.hotel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserDto userDto) throws ErrorException {
+    public ResponseEntity<UserAccount> createUser(@RequestBody UserDto userDto) throws ErrorException {
         return ResponseEntity.ok(userService.createUser(userDto));
     }
 }

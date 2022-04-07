@@ -1,13 +1,9 @@
 package com.example.hotel.services;
 
-import com.example.hotel.dtos.StaffDto;
 import com.example.hotel.dtos.UserDto;
 import com.example.hotel.exceptions.ErrorException;
-import com.example.hotel.exceptions.StaffAlreadyExistException;
-import com.example.hotel.models.Staff;
-import com.example.hotel.models.User;
+import com.example.hotel.models.UserAccount;
 import com.example.hotel.models.UserType;
-import com.example.hotel.repositories.StaffRepository;
 import com.example.hotel.repositories.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +18,12 @@ public class UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public User createUser(UserDto userDto) throws ErrorException {
+    public UserAccount createUser(UserDto userDto) throws ErrorException {
         // checking to see if user already exists
         if (userRepository.existsByEmailAddress(userDto.getEmailAddress())) {
             throw new ErrorException("Email address already exists!");
         }
-        User user = new User();
+        UserAccount user = new UserAccount();
         BeanUtils.copyProperties(userDto, user);
         user.setUserType(UserType.valueOf(userDto.getUserType()));
 
@@ -39,7 +35,7 @@ public class UserService {
             }
             throw new ErrorException("Password does not match!");
         } else if (userDto.getUserType().equals("STAFF")){
-            User staffUser = userRepository.save(user);
+            UserAccount staffUser = userRepository.save(user);
             staffUser.setStaffId(staffUser.toString());
             String thePassword = passwordEncoder.encode(staffUser.getStaffId());
             staffUser.setPassword(thePassword);

@@ -4,7 +4,7 @@ import com.example.hotel.dtos.RoomTypePriceDto;
 import com.example.hotel.exceptions.ErrorException;
 import com.example.hotel.models.RoomType;
 import com.example.hotel.models.RoomTypePrice;
-import com.example.hotel.models.User;
+import com.example.hotel.models.UserAccount;
 import com.example.hotel.models.UserType;
 import com.example.hotel.repositories.RoomTypePriceRepository;
 import com.example.hotel.repositories.UserRepository;
@@ -55,7 +55,7 @@ public class RoomTypePriceService {
 
     public void userValidation(Long userId) throws ErrorException {
         //check if user exists
-        Optional<User> user = userRepository.findUserById(userId);
+        Optional<UserAccount> user = userRepository.findUserById(userId);
         if (user.isEmpty()){
             throw new ErrorException("User not registered!");
         }
