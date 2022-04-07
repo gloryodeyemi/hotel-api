@@ -41,12 +41,12 @@ public class RoomTypePriceService {
         return roomTypePriceRepository.save(roomTypePrice.get());
     }
 
-    public RoomTypePrice getRoomPrice(String roomType) throws ErrorException{
+    public Double getRoomPrice(String roomType) throws ErrorException{
         Optional<RoomTypePrice> roomTypePrice = roomTypePriceRepository.findByRoomType(RoomType.valueOf(roomType));
         if (roomTypePrice.isEmpty()){
             throw new ErrorException("Room type not found!");
         }
-        return roomTypePrice.get();
+        return roomTypePrice.get().getPrice();
     }
 
     public List<RoomTypePrice> getAllRoomPrice() {
