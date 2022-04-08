@@ -4,6 +4,8 @@ import com.example.hotel.dtos.RoomDto;
 import com.example.hotel.dtos.RoomTypePriceDto;
 import com.example.hotel.exceptions.ErrorException;
 import com.example.hotel.models.HotelRoom;
+import com.example.hotel.models.RoomStatus;
+import com.example.hotel.models.RoomType;
 import com.example.hotel.models.RoomTypePrice;
 import com.example.hotel.services.RoomService;
 import com.example.hotel.services.RoomTypePriceService;
@@ -53,7 +55,17 @@ public class RoomController {
     }
 
     @GetMapping("/{roomCode}")
-    public ResponseEntity<HotelRoom> getRoom(@PathVariable String roomCode) throws ErrorException {
+    public ResponseEntity<HotelRoom> getRoomByCode(@PathVariable String roomCode) throws ErrorException {
         return ResponseEntity.ok(roomService.getRoom(roomCode));
+    }
+
+    @GetMapping("/room-status/{roomStatus}")
+    public ResponseEntity<List<HotelRoom>> getRoomByStatus(@PathVariable RoomStatus roomStatus) {
+        return ResponseEntity.ok(roomService.getRoomsByStatus(roomStatus));
+    }
+
+    @GetMapping("/room-type/{roomType}")
+    public ResponseEntity<List<HotelRoom>> getRoomByType(@PathVariable RoomType roomType) {
+        return ResponseEntity.ok(roomService.getRoomsByType(roomType));
     }
 }

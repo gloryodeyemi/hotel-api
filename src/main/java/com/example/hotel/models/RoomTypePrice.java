@@ -1,5 +1,6 @@
 package com.example.hotel.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -7,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
@@ -19,7 +21,10 @@ public class RoomTypePrice {
     private Double price;
 
     @CreationTimestamp
-    private Timestamp dateCreated;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(updatable = false)
+    private LocalDateTime dateCreated;
+
     @UpdateTimestamp
-    private Timestamp dateUpdated;
+    private LocalDateTime dateUpdated;
 }

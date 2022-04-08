@@ -42,4 +42,12 @@ public class RoomService {
         }
         return room.get();
     }
+
+    public List<HotelRoom> getRoomsByStatus(RoomStatus roomStatus) {
+        return roomRepository.findAllByRoomStatus(roomStatus).get();
+    }
+
+    public List<HotelRoom> getRoomsByType(RoomType roomType) {
+        return roomRepository.findAllByRoomType(roomType).get();
+    }
 }

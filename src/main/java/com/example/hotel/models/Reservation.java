@@ -1,8 +1,7 @@
 package com.example.hotel.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -11,22 +10,23 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter @Setter
-public class HotelRoom {
+@Data
+public class Reservation {
     @Id
     @Column(unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String roomCode;
     private RoomType roomType;
-    private Double price;
-    private RoomStatus roomStatus;
+    private Long numberOfPersons;
+    private Long numberOfRooms;
+    private Long numberOfNights;
+    private Double totalAmount;
 
-    @Override
-    public final String toString(){
-        return this.roomType + "-" + this.id;
-    }
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime arrivalDate;
+
+    private PaymentStatus paymentStatus;
 
     @CreationTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -36,4 +36,6 @@ public class HotelRoom {
     @UpdateTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateUpdated;
+
+
 }

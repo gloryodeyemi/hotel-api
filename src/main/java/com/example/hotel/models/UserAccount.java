@@ -1,11 +1,13 @@
 package com.example.hotel.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -29,8 +31,11 @@ public class UserAccount {
     }
 
     @CreationTimestamp
-    private Timestamp dateCreated;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(updatable = false)
+    private LocalDateTime dateCreated;
 
     @UpdateTimestamp
-    private Timestamp dateUpdated;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime dateUpdated;
 }
