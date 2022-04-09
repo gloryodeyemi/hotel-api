@@ -40,6 +40,8 @@ public class Reservation {
     @JsonIgnoreProperties({"id", "roomType", "price", "roomStatus", "dateCreated", "dateUpdated"})
     private List<HotelRoom> rooms;
 
+    private Boolean active;
+
     @CreationTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(updatable = false)
