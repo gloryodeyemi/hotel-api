@@ -44,10 +44,12 @@ public class RoomService {
     }
 
     public List<HotelRoom> getRoomsByStatus(RoomStatus roomStatus) {
-        return roomRepository.findAllByRoomStatus(roomStatus).get();
+        Optional<List<HotelRoom>> rooms = roomRepository.findAllByRoomStatus(roomStatus);
+        return rooms.orElse(null);
     }
 
     public List<HotelRoom> getRoomsByType(RoomType roomType) {
-        return roomRepository.findAllByRoomType(roomType).get();
+        Optional<List<HotelRoom>> rooms = roomRepository.findAllByRoomType(roomType);
+        return rooms.orElse(null);
     }
 }
