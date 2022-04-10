@@ -1,6 +1,7 @@
 package com.example.hotel.controllers;
 
 import com.example.hotel.exceptions.ErrorException;
+import com.example.hotel.models.HotelRoom;
 import com.example.hotel.models.Reservation;
 import com.example.hotel.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,10 @@ public class ReservationController {
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Reservation>> getByUserId(@PathVariable Long userId){
         return ResponseEntity.ok(reservationService.getReservationByUserId(userId));
+    }
+
+    @GetMapping("/checkout/{roomCode}")
+    public ResponseEntity<HotelRoom> checkOut(@PathVariable String roomCode) throws ErrorException{
+        return ResponseEntity.ok(reservationService.checkOut(roomCode));
     }
 }

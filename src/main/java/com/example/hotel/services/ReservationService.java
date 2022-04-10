@@ -87,4 +87,10 @@ public class ReservationService {
     public List<Reservation> getReservationByUserId(Long userId) {
         return reservationRepository.findByUserIdAndActive(userId, true);
     }
+
+    public HotelRoom checkOut(String roomCode) throws ErrorException{
+        HotelRoom room = roomService.getRoom(roomCode);
+        room.setRoomStatus(RoomStatus.AVAILABLE);
+        return roomRepository.save(room);
+    }
 }

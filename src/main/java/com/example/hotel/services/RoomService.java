@@ -37,10 +37,10 @@ public class RoomService {
 
     public HotelRoom getRoom(String roomCode) throws ErrorException{
         Optional<HotelRoom> room = roomRepository.findByRoomCode(roomCode);
-        if (room.isEmpty()){
-            throw new ErrorException("Room not found!");
+        if (room.isPresent()){
+            return room.get();
         }
-        return room.get();
+        throw new ErrorException("Room not found!");
     }
 
     public List<HotelRoom> getRoomsByStatus(RoomStatus roomStatus) {
