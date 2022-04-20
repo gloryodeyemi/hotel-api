@@ -6,12 +6,12 @@ import com.example.hotel.models.UserAccount;
 import com.example.hotel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Repository
+@RestController
 @RequestMapping("user")
 public class UserController {
     @Autowired
