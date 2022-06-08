@@ -2,6 +2,7 @@ package com.example.hotel.services;
 
 import com.example.hotel.dtos.UserDto;
 import com.example.hotel.exceptions.ErrorException;
+import com.example.hotel.exceptions.UserAlreadyExistException;
 import com.example.hotel.models.UserAccount;
 import com.example.hotel.models.UserType;
 import com.example.hotel.repositories.UserRepository;
@@ -21,7 +22,8 @@ public class UserService {
     public UserAccount createUser(UserDto userDto) throws ErrorException {
         // checking to see if user already exists
         if (userRepository.existsByEmailAddress(userDto.getEmailAddress())) {
-            throw new ErrorException("Email address already exists!");
+//            throw new ErrorException("Email address already exists!");
+            throw new UserAlreadyExistException("Email address already exists!");
         }
         UserAccount user = new UserAccount();
         BeanUtils.copyProperties(userDto, user);

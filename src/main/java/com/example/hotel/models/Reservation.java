@@ -9,7 +9,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -21,9 +23,9 @@ public class Reservation {
 
     private Long userId;
 
-    private RoomType roomType;
+//    private RoomType roomType;
     private Long numberOfPersons;
-    private Long numberOfRooms;
+//    private Long numberOfRooms;
     private Long numberOfNights;
     private Double totalAmount;
 
@@ -36,9 +38,11 @@ public class Reservation {
     private PaymentStatus paymentStatus;
     private String message;
 
-    @OneToMany
+//    @OneToMany
+    @OneToOne
     @JsonIgnoreProperties({"id", "roomType", "price", "roomStatus", "dateCreated", "dateUpdated"})
-    private List<HotelRoom> rooms;
+    private HotelRoom room;
+//    private List<HotelRoom> rooms;
 
     private Boolean active;
 

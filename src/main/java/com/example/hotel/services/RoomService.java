@@ -31,6 +31,10 @@ public class RoomService {
         return roomRepository.save(room);
     }
 
+    public HotelRoom findById(Long roomId){
+        return roomRepository.findById(roomId).orElse(null);
+    }
+
     public List<HotelRoom> getAllRooms(){
         return roomRepository.findAll();
     }
